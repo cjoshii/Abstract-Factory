@@ -30,10 +30,10 @@ IAnimalFactory? factory = null;
 switch (choice)
 {
     case 1:
-        factory = new WildAnimalFactory();
+        factory = WildAnimalFactory.Instance;
         break;
     case 2:
-        factory = new DomesticAnimalFactory();
+        factory = DomesticAnimalFactory.Instance;
         break;
     default:
         Console.WriteLine("Invalid choice");
