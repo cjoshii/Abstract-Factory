@@ -1,6 +1,7 @@
 internal class WildAnimalFactory : IAnimalFactory
 {
     private static WildAnimalFactory? _instance;    
+    private static readonly Lock _lock = new();
 
     private WildAnimalFactory()
     {
@@ -13,7 +14,8 @@ internal class WildAnimalFactory : IAnimalFactory
         {
             if (_instance == null)
             {
-                _instance = new WildAnimalFactory();
+                lock(_lock)
+                _instance ??= new WildAnimalFactory();
             }
             return _instance;
         }
