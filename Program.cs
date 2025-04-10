@@ -5,12 +5,13 @@ Console.WriteLine("2. Domestic");
 
 int choice = 0;
 
-while(true) {
+while (true)
+{
     try
     {
         string? input = Console.ReadLine();
-        
-        if(input == null)
+
+        if (input == null)
         {
             Console.WriteLine("Invalid choice, please try again");
             continue;
@@ -22,7 +23,7 @@ while(true) {
     catch (Exception)
     {
         Console.WriteLine("Invalid choice, please try again");
-    } 
+    }
 }
 
 IAnimalFactory? factory = null;
@@ -43,8 +44,13 @@ switch (choice)
 if (factory != null)
 {
     IDog dog = factory.CreateDog();
-    Console.WriteLine((choice == 1 ?  "Wild" : "Domestic") + " Dog " + dog.Speak());
+    Console.WriteLine((choice == 1 ? "Wild" : "Domestic") + " Dog " + dog.Speak());
 
     ICat cat = factory.CreateCat();
-    Console.WriteLine((choice == 1 ?  "Wild" : "Domestic") + " Cat " + cat.Speak());
+    Console.WriteLine((choice == 1 ? "Wild" : "Domestic") + " Cat " + cat.Speak());
 }
+
+//Lets use new furniture factory
+var furnitureFactory = choice == 1 ? ModernFurnitureFactory.Instance : ClassicFurnitureFactory.Instance;
+var furnitureClient = new FurnitureClient(furnitureFactory);
+furnitureClient.DescribeFurniture();
